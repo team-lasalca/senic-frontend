@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'RisingStar';
+    src: url('../fonts/RisingStar_Regular.ttf');
+}
+
+.logo {
+    font-family: 'RisingStar';
+    font-size: 100px;
+    color: white;
+    text-shadow: 2px 2px 1px #444444;
+}

@@ -1,0 +1,9 @@
+.page {
+    min-height: 100%;
+    overflow: hidden;
+
+    background-image: url('../images/background_bright_blurred.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
