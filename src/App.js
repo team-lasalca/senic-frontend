@@ -1,21 +1,34 @@
 import React from 'react';
 
-import './css/Logo.css';
 import './css/Page.css';
 
+import Logo from './Logo';
 import UploadCard from './UploadCard';
 
 class App extends React.Component {
-  render() {
-    return (
-      <div className="page">
-            <div className="text-center">
-                <h1 className="logo">SENIC</h1>
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            transition_stage: 'none'
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
+            current_state: "Upload",
+            transition_stage: "state-enter",
+        });
+    }
+
+    render() {
+        return (
+            <div className="page">
+                    <Logo />
+                    <UploadCard />
             </div>
-            <UploadCard />
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;
