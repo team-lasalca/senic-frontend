@@ -1,0 +1,13 @@
+@import '../../node_modules/animate.css/animate.css';
+
+.logo-enter {
+    animation: 0.9s slideInLeft;
+}
+
+.statechange-enter {
+    animation: 1s slideInLeft;
+}
+
+.statechange-exit {
+    animation: 1s slideOutRight;
+}
