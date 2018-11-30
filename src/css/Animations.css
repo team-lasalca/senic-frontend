@@ -1,13 +1,13 @@
 @import '../../node_modules/animate.css/animate.css';
 
 .logo-enter {
-    animation: 0.9s slideInLeft;
+    animation: 1s jackInTheBox;
 }
 
 .statechange-enter {
-    animation: 1s slideInLeft;
+    animation: 1s slideInLeft, 1s fadeIn;
 }
 
 .statechange-exit {
-    animation: 1s slideOutRight;
+    animation: 1s slideOutRight, 1s fadeOut;
 }

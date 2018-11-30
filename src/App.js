@@ -14,21 +14,43 @@ class App extends React.Component {
         this.state = {
             transition_stage: 'none'
         };
+
+        this.onUploaded = this.onUploaded.bind(this);
     }
 
     componentDidMount() {
         this.setState({
-            current_state: 'Upload',
-            transition_stage: 'state-enter'
+            transition_stage: "logo-enter",
+        });
+    }
+
+    onUploaded() {
+        this.setState({
+            current_state: this.state.current_state,
+            transition_stage: "state-exit",
+            next_state: "Loading"
         });
     }
 
     render() {
         return (
             <div className="page">
-                    <Logo />
                     <CSSTransition
-                        in={ this.state.transition_stage === "state-enter" }
+                        in={ this.state.transition_stage === 'logo-enter' }
+                        classNames="logo"
+                        timeout={ 1000 }
+                        onEntered={ () => {
+                            this.setState({
+                                current_state: 'Upload',
+                                transition_stage: 'state-enter'
+                            });
+                        } }
+                        exit={ false }>
+                        <Logo />
+                    </CSSTransition>
+                    
+                    <CSSTransition
+                        in={ this.state.transition_stage === 'state-enter' }
                         classNames="statechange"
                         timeout={ 1000 }
                         onExited={ () => {  // state change from "state-enter" to "state-exit"
@@ -38,7 +60,7 @@ class App extends React.Component {
                             });
                         } }
                         unmountOnExit>
-                        <UploadCard />
+                        <UploadCard onUploaded={ this.onUploaded }/>
                     </CSSTransition>
             </div>
         );
