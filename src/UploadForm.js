@@ -34,7 +34,10 @@ class UploadForm extends React.Component {
         e.preventDefault();
         console.log(this.state);
         this.props.enableDimmer();
-        setTimeout(() => this.props.disableDimmer(), 4000);
+        setTimeout(() => {
+            this.props.disableDimmer();
+            this.props.onUploaded();
+        }, 1000); // TODO: proper server communication
     }
 
     onFileChange(e) {
