@@ -81,7 +81,7 @@ class UploadForm extends React.Component {
                         type="file"
                         id="file_upload"
                         className="form-control-file"
-                        accept="image/png"
+                        accept="image/jpeg"
                         onChange={ this.onFileChange }
                         required />
                 </div>
