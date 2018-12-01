@@ -38,7 +38,7 @@ class UploadForm extends React.Component {
         let file = e.target.files[0];
         let reader = new FileReader();
 
-        reader.onload = (e) => console.log(this.updateState('file_data', e.target.result));
+        reader.onload = (e) => this.updateState('file_data', e.target.result);
         reader.readAsBinaryString(file);
     }
 
