@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import './css/Page.css';
 import './css/Animations.css';
+import './css/Dimmer.css';
 
 import Logo from './Logo';
 import UploadCard from './UploadCard';
@@ -12,15 +13,19 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            transition_stage: 'none'
+            transition_stage: 'none',
+            dimmer_showing: false
         };
 
         this.onUploaded = this.onUploaded.bind(this);
+        this.enableDimmer = this.enableDimmer.bind(this);
+        this.disableDimmer = this.disableDimmer.bind(this);
     }
 
     componentDidMount() {
         this.setState({
             transition_stage: "logo-enter",
+            dimmer_showing: this.state.dimmer_showing
         });
     }
 
@@ -28,13 +33,42 @@ class App extends React.Component {
         this.setState({
             current_state: this.state.current_state,
             transition_stage: "state-exit",
-            next_state: "Loading"
+            next_state: "Loading",
+            dimmer_showing: this.state.dimmer_showing
+        });
+    }
+
+    enableDimmer() {
+        this.setState({
+            current_state: this.state.current_state,
+            transition_stage: this.state.transition_stage,
+            next_state: this.state.next_state,
+            dimmer_showing: true
+        });
+    }
+
+    disableDimmer() {
+        this.setState({
+            current_state: this.state.current_state,
+            transition_stage: this.state.transition_stage,
+            next_state: this.state.next_state,
+            dimmer_showing: false
         });
     }
 
     render() {
+        let dimmer = <div></div>;
+        if (this.state.dimmer_showing)
+            dimmer = (
+                <div className="dimmer">
+                    <i className="spinner fa fa-spinner fa-spin"></i>
+                </div>
+            );
+
         return (
             <div className="page">
+                    { dimmer }
+                    
                     <CSSTransition
                         in={ this.state.transition_stage === 'logo-enter' }
                         classNames="logo"
@@ -42,7 +76,8 @@ class App extends React.Component {
                         onEntered={ () => {
                             this.setState({
                                 current_state: 'Upload',
-                                transition_stage: 'state-enter'
+                                transition_stage: 'state-enter',
+                                dimmer_showing: this.state.dimmer_showing
                             });
                         } }
                         exit={ false }>
@@ -56,11 +91,12 @@ class App extends React.Component {
                         onExited={ () => {  // state change from "state-enter" to "state-exit"
                             this.setState({
                                 current_state: this.state.next_state,
-                                transition_stage: "state-enter" 
+                                transition_stage: "state-enter",
+                                dimmer_showing: this.state.dimmer_showing
                             });
                         } }
                         unmountOnExit>
-                        <UploadCard onUploaded={ this.onUploaded }/>
+                        <UploadCard onUploaded={ this.onUploaded } enableDimmer={ this.enableDimmer } disableDimmer={ this.disableDimmer } />
                     </CSSTransition>
             </div>
         );
