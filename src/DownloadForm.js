@@ -15,8 +15,10 @@ class DownloadForm extends React.Component {
     }
 
     componentDidMount() {
+        this.props.enableDimmer();
         axios.get(SERVER_ADDR + '/get_gps/' + this.props.image_path)
             .then((response) => {
+                this.props.disableDimmer();
                 let coordinates = response.data.split(' ');
                 this.setState({
                     gps: true,
