@@ -15,6 +15,7 @@ class UploadForm extends React.Component {
         };
 
         this.updateState = this.updateState.bind(this);
+        this.validate = this.validate.bind(this);
 
         this.onFileChange = this.onFileChange.bind(this);
         this.onRadioClick = this.onRadioClick.bind(this);
@@ -30,8 +31,12 @@ class UploadForm extends React.Component {
     }
 
     validate(e) {
-        console.log(this.state);
         e.preventDefault();
+        console.log(this.state);
+        setTimeout(() => {
+            this.props.enableDimmer();
+            setTimeout(() => this.props.disableDimmer(), 4000);
+         }, 4000);
     }
 
     onFileChange(e) {
@@ -60,7 +65,7 @@ class UploadForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={ (e) => this.validate(e) }>
+            <form onSubmit={ this.validate }>
                 <h2>Upload your picture</h2>
 
                 <div className="form-group">
