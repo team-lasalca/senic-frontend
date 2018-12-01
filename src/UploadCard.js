@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './css/UploadCard.css';
+import './css/Card.css';
 
 import UploadForm from './UploadForm';
 
