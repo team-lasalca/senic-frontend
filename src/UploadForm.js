@@ -1,11 +1,14 @@
 import React from 'react';
+import axios from 'axios';
+
+const SERVER_ADDR = 'http://127.0.0.1:5000'
 
 class UploadForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            file_data: null,
+            file: null,
             selected_radio: '1',
             sample_checkbox1: false,
             sample_checkbox2: false,
@@ -32,20 +35,23 @@ class UploadForm extends React.Component {
 
     validate(e) {
         e.preventDefault();
-        console.log(this.state);
+
+        let formdata = new FormData();
+        for (const [key, value] of Object.entries(this.state)) {
+            formdata.append(key, value);
+        }
+
         this.props.enableDimmer();
-        setTimeout(() => {
-            this.props.disableDimmer();
-            this.props.onUploaded();
-        }, 1000); // TODO: proper server communication
+        axios.post(SERVER_ADDR + '/upload_data', formdata, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then((response) => {
+                this.props.disableDimmer();
+                this.props.onUploaded(response.data);
+            })
+            .catch((err) => console.log(err));
     }
 
     onFileChange(e) {
-        let file = e.target.files[0];
-        let reader = new FileReader();
-
-        reader.onload = (e) => this.updateState('file_data', e.target.result);
-        reader.readAsBinaryString(file);
+        this.updateState('file', e.target.files[0]);
     }
 
     onRadioClick(e) {
@@ -75,7 +81,7 @@ class UploadForm extends React.Component {
                         type="file"
                         id="file_upload"
                         className="form-control-file"
-                        accept="image/png, image/jpeg"
+                        accept="image/png"
                         onChange={ this.onFileChange }
                         required />
                 </div>

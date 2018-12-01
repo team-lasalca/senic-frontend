@@ -32,12 +32,13 @@ class App extends React.Component {
         });
     }
 
-    onUploaded() {
+    onUploaded(path) {
         this.setState({
             current_state: this.state.current_state,
             transition_stage: "state-exit",
             next_state: "Download",
-            dimmer_showing: this.state.dimmer_showing
+            dimmer_showing: this.state.dimmer_showing,
+            image_path: path
         });
     }
 
@@ -69,11 +70,11 @@ class App extends React.Component {
     }
 
     render() {
-        let state;
+        let state = <div></div>;
         if (this.state.current_state === 'Upload')
             state = <UploadCard onUploaded={ this.onUploaded } enableDimmer={ this.enableDimmer } disableDimmer={ this.disableDimmer } />;
-        else
-            state = <DownloadCard onMainMenu={ this.onMainMenu } />
+        else if (this.state.current_state === 'Download')
+            state = <DownloadCard onMainMenu={ this.onMainMenu } image_path={ this.state.image_path } />
         
         return (
             <div className="page">
@@ -111,7 +112,8 @@ class App extends React.Component {
                         this.setState({
                             current_state: this.state.next_state,
                             transition_stage: "state-enter",
-                            dimmer_showing: this.state.dimmer_showing
+                            dimmer_showing: this.state.dimmer_showing,
+                            image_path: this.state.image_path
                         });
                     } }
                     unmountOnExit>
