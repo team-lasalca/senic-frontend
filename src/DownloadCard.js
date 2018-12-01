@@ -9,7 +9,7 @@ class DownloadCard extends React.Component {
         return (
             <div className="card download">
                 <div className="card-body">
-                    <DownloadForm onMainMenu={ this.props.onMainMenu } />
+                    <DownloadForm onMainMenu={ this.props.onMainMenu } image_path={ this.props.image_path } />
                 </div>
             </div>
         );
