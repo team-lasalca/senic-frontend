@@ -57,17 +57,18 @@ class App extends React.Component {
     }
 
     render() {
-        let dimmer = <div></div>;
-        if (this.state.dimmer_showing)
-            dimmer = (
-                <div className="dimmer">
-                    <i className="spinner fa fa-spinner fa-spin"></i>
-                </div>
-            );
-
         return (
             <div className="page">
-                    { dimmer }
+                    <CSSTransition
+                        in={ this.state.dimmer_showing }
+                        classNames="dimmeranim"
+                        timeout={ 1000 }
+                        mountOnEnter
+                        unmountOnExit>
+                        <div className="dimmer">
+                            <i className="spinner fa fa-spinner fa-spin"></i>
+                        </div>
+                    </CSSTransition>
                     
                     <CSSTransition
                         in={ this.state.transition_stage === 'logo-enter' }
