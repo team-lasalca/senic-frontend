@@ -72,9 +72,16 @@ class App extends React.Component {
     render() {
         let state = <div></div>;
         if (this.state.current_state === 'Upload')
-            state = <UploadCard onUploaded={ this.onUploaded } enableDimmer={ this.enableDimmer } disableDimmer={ this.disableDimmer } />;
+            state = <UploadCard
+                        onUploaded={ this.onUploaded }
+                        enableDimmer={ this.enableDimmer }
+                        disableDimmer={ this.disableDimmer } />;
         else if (this.state.current_state === 'Download')
-            state = <DownloadCard onMainMenu={ this.onMainMenu } image_path={ this.state.image_path } />
+            state = <DownloadCard
+                        onMainMenu={ this.onMainMenu }
+                        enableDimmer={ this.enableDimmer }
+                        disableDimmer={ this.disableDimmer }
+                        image_path={ this.state.image_path } />
         
         return (
             <div className="page">
