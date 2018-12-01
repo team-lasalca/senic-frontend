@@ -11,3 +11,11 @@
 .statechange-exit {
     animation: 1s slideOutRight, 1s fadeOut;
 }
+
+.dimmeranim-enter {
+    animation: 1s fadeIn;
+}
+
+.dimmeranim-exit {
+    animation: 1s fadeOut;
+}
