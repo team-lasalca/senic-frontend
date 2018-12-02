@@ -46,11 +46,12 @@ class UploadForm extends React.Component {
             return;
 
         this.props.enableDimmer();
-        setTimeout(() => {}, 30000);
         axios.post(SERVER_ADDR + '/upload_data', formdata, {timeout: 180000, headers: { 'Content-Type': 'multipart/form-data' } })
             .then((response) => {
-                this.props.disableDimmer();
-                this.props.onUploaded(response.data);
+                setTimeout(() => {
+                    this.props.disableDimmer();
+                    this.props.onUploaded(response.data);
+                }, 30000);
             })
             .catch((err) => console.log(err));
     }
