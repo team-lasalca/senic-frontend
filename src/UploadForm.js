@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const SERVER_ADDR = '***REMOVED***:80'
+const SERVER_ADDR = '***REMOVED***'
 
 class UploadForm extends React.Component {
     constructor(props) {
