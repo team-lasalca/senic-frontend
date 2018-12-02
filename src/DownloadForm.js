@@ -26,6 +26,7 @@ class DownloadForm extends React.Component {
                 });
             })
             .catch((err) => {
+                this.props.disableDimmer();
                 this.setState({
                     gps: false,
                     reason: err.response.data
@@ -42,11 +43,13 @@ class DownloadForm extends React.Component {
             message = <p>No GPS data is available for this picture</p>;
         else
             message = <p>Picture was not found</p>;
+        
+        let segmented_path = this.props.image_path.slice(0, -4) + 'SEGMENTED.png';
 
         return (
             <div>
                 <h2>Your picture has been processed!</h2>
-                <img className="picture" src={ SERVER_ADDR + '/get_picture/' + this.props.image_path } alt="processed" />
+                <img className="picture" src={ SERVER_ADDR + '/get_picture/' + segmented_path } alt="processed" />
                 <br />
                 { message }
                 <button type="button" className="btn btn-primary mt-4" onClick={ this.props.onMainMenu }>Back to Main Menu</button>
