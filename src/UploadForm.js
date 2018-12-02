@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import './css/Error.css';
+
 const SERVER_ADDR = '***REMOVED***'
 
 class UploadForm extends React.Component {
@@ -10,7 +12,7 @@ class UploadForm extends React.Component {
         this.state = {
             file: null,
             selected_radio: '1',
-            upscale: false,
+            upscale: true,
             denoise: false,
             sample_range1: '50',
             sample_range2: '50',
@@ -40,6 +42,9 @@ class UploadForm extends React.Component {
         for (const [key, value] of Object.entries(this.state)) {
             formdata.append(key, value);
         }
+
+        if (!(this.state.upscale || this.state.denoise))
+            return;
 
         this.props.enableDimmer();
         axios.post(SERVER_ADDR + '/upload_data', formdata, { headers: { 'Content-Type': 'multipart/form-data' } })
@@ -94,7 +99,8 @@ class UploadForm extends React.Component {
                             type="checkbox"
                             id="upscale"
                             className="custom-control-input" 
-                            onClick = { this.onCheckboxClick } />
+                            onClick = { this.onCheckboxClick } 
+                            defaultChecked />
                         <label className="custom-control-label" htmlFor="upscale">Upscale</label>
                     </div>
                     <div className="custom-control custom-checkbox">
@@ -105,6 +111,7 @@ class UploadForm extends React.Component {
                             onClick = { this.onCheckboxClick } />
                         <label className="custom-control-label" htmlFor="denoise">Denoise</label>
                     </div>
+                    <span className="error">{ !(this.state.upscale || this.state.denoise) ? 'At least one of these checkboxes has to be selected': '' }</span>
                 </div>
 
                 <div className="form-group">
