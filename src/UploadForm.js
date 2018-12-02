@@ -128,42 +128,6 @@ class UploadForm extends React.Component {
                     <span>{ parseInt(this.state.noise_level) + 1 }</span>
                 </div>
 
-                <div className="form-group">
-                    <div className="custom-control custom-radio">
-                        <input
-                            type="radio"
-                            id="sample_radio1"
-                            name="sample_radio"
-                            value="1"
-                            className="custom-control-input"
-                            onClick={ this.onRadioClick }
-                            defaultChecked />
-                        <label className="custom-control-label" htmlFor="sample_radio1">Sample radio 1</label>
-                    </div>
-                    <div className="custom-control custom-radio">
-                        <input
-                            type="radio"
-                            id="sample_radio2"
-                            name="sample_radio"
-                            value="2"
-                            onClick={ this.onRadioClick }
-                            className="custom-control-input" />
-                        <label className="custom-control-label" htmlFor="sample_radio2">Sample radio 2</label>
-                    </div>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="sample_select">Sample select</label>
-                    <select
-                        id="sample_select"
-                        className="custom-select"
-                        onChange={ this.onSelectChange }>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                </div>
-
                 <button className="btn btn-primary mb-3" type="submit">Submit</button>
             </form>
         );
