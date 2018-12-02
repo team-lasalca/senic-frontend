@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './css/Picture.css';
 
-const SERVER_ADDR = 'http://61ce14a8.ngrok.io:80';
+const SERVER_ADDR = 'http://61ce14a8.ngrok.io';
 
 class DownloadForm extends React.Component {
     constructor(props) {
