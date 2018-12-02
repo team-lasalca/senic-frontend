@@ -14,7 +14,7 @@ class UploadForm extends React.Component {
             selected_radio: '1',
             upscale: true,
             denoise: false,
-            noise_level: '1',
+            noise_level: '0',
             selected_option: '1'
         };
 
