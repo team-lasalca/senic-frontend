@@ -14,8 +14,7 @@ class UploadForm extends React.Component {
             selected_radio: '1',
             upscale: true,
             denoise: false,
-            sample_range1: '50',
-            sample_range2: '50',
+            noise_level: '1',
             selected_option: '1'
         };
 
@@ -25,7 +24,7 @@ class UploadForm extends React.Component {
         this.onFileChange = this.onFileChange.bind(this);
         this.onRadioClick = this.onRadioClick.bind(this);
         this.onCheckboxClick = this.onCheckboxClick.bind(this);
-        this.onRangeMove = this.onRangeMove.bind(this);
+        this.onNoiseRangeMove = this.onNoiseRangeMove.bind(this);
         this.onSelectChange = this.onSelectChange.bind(this);
     }
 
@@ -67,8 +66,9 @@ class UploadForm extends React.Component {
         this.updateState(e.target.id, e.target.checked);
     }
 
-    onRangeMove(e) {
-        this.updateState(e.target.id, e.target.value);
+    onNoiseRangeMove(e) {
+        let value = (Math.trunc(e.target.value / 25) + 1).toString();
+        this.updateState(e.target.id, value);
     }
 
     onSelectChange(e) {
@@ -115,6 +115,20 @@ class UploadForm extends React.Component {
                 </div>
 
                 <div className="form-group">
+                    <label htmlFor="noise_level">Noise level</label>
+                    <input
+                        type="range"
+                        id="noise_level"
+                        defaultValue="0"
+                        min="0"
+                        max="75"
+                        step="25"
+                        className="custom-range" 
+                        onInput={ this.onNoiseRangeMove } />
+                    <span>{ this.state.noise_level }</span>
+                </div>
+
+                <div className="form-group">
                     <div className="custom-control custom-radio">
                         <input
                             type="radio"
@@ -136,22 +150,6 @@ class UploadForm extends React.Component {
                             className="custom-control-input" />
                         <label className="custom-control-label" htmlFor="sample_radio2">Sample radio 2</label>
                     </div>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="sample_range1">Sample range 1</label>
-                    <input
-                        type="range"
-                        id="sample_range1"
-                        className="custom-range" 
-                        onInput={ this.onRangeMove } />
-
-                    <label htmlFor="sample_range2">Sample range 2</label>
-                    <input
-                        type="range"
-                        id="sample_range2"
-                        className="custom-range"
-                        onInput={ this.onRangeMove } />
                 </div>
 
                 <div className="form-group">
