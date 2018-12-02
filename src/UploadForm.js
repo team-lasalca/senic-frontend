@@ -67,7 +67,7 @@ class UploadForm extends React.Component {
     }
 
     onNoiseRangeMove(e) {
-        let value = (Math.trunc(e.target.value / 25) + 1).toString();
+        let value = Math.trunc(e.target.value / 25).toString();
         this.updateState(e.target.id, value);
     }
 
@@ -125,7 +125,7 @@ class UploadForm extends React.Component {
                         step="25"
                         className="custom-range" 
                         onInput={ this.onNoiseRangeMove } />
-                    <span>{ this.state.noise_level }</span>
+                    <span>{ this.state.noise_level + 1 }</span>
                 </div>
 
                 <div className="form-group">
