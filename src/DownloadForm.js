@@ -40,9 +40,9 @@ class DownloadForm extends React.Component {
             const [lat, lon] = this.state.coordinates;
             message = <p>This picture was taken at { Math.abs(lat) + (lat >= 0 ? 'N' : 'S') } { Math.abs(lon) + (lon >= 0 ? 'E' : 'W') }</p>;
         } else if (this.state.reason === 'no_gps')
-            message = <p>No GPS data is available for this picture</p>;
+            message = <p></p>;
         else
-            message = <p>Picture was not found</p>;
+            message = <p></p>;
         
         let segmented_path = this.props.image_path.slice(0, -4) + 'ENHANCED.png';
 
