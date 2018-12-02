@@ -91,7 +91,7 @@ class UploadForm extends React.Component {
                         required />
                 </div>
 
-                <h2>Adjust its parameters</h2>
+                <h2 className="mt-5">Adjust its parameters</h2>
 
                 <div className="form-group">
                     <div className="custom-control custom-checkbox">
