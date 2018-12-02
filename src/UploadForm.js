@@ -10,8 +10,8 @@ class UploadForm extends React.Component {
         this.state = {
             file: null,
             selected_radio: '1',
-            sample_checkbox1: false,
-            sample_checkbox2: false,
+            upscale: false,
+            denoise: false,
             sample_range1: '50',
             sample_range2: '50',
             selected_option: '1'
@@ -89,6 +89,25 @@ class UploadForm extends React.Component {
                 <h2>Adjust its parameters</h2>
 
                 <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input
+                            type="checkbox"
+                            id="upscale"
+                            className="custom-control-input" 
+                            onClick = { this.onCheckboxClick } />
+                        <label className="custom-control-label" htmlFor="upscale">Upscale</label>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input
+                            type="checkbox"
+                            id="denoise"
+                            className="custom-control-input" 
+                            onClick = { this.onCheckboxClick } />
+                        <label className="custom-control-label" htmlFor="denoise">Denoise</label>
+                    </div>
+                </div>
+
+                <div className="form-group">
                     <div className="custom-control custom-radio">
                         <input
                             type="radio"
@@ -109,25 +128,6 @@ class UploadForm extends React.Component {
                             onClick={ this.onRadioClick }
                             className="custom-control-input" />
                         <label className="custom-control-label" htmlFor="sample_radio2">Sample radio 2</label>
-                    </div>
-                </div>
-
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input
-                            type="checkbox"
-                            id="sample_checkbox1"
-                            className="custom-control-input" 
-                            onClick = { this.onCheckboxClick } />
-                        <label className="custom-control-label" htmlFor="sample_checkbox1">Sample checkbox 1</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input
-                            type="checkbox"
-                            id="sample_checkbox2"
-                            className="custom-control-input" 
-                            onClick = { this.onCheckboxClick } />
-                        <label className="custom-control-label" htmlFor="sample_checkbox2">Sample checkbox 2</label>
                     </div>
                 </div>
 
