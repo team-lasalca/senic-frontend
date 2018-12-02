@@ -44,7 +44,7 @@ class DownloadForm extends React.Component {
         else
             message = <p>Picture was not found</p>;
         
-        let segmented_path = this.props.image_path.slice(0, -4) + 'SEGMENTED.png';
+        let segmented_path = this.props.image_path.slice(0, -4) + 'ENHANCED.png';
 
         return (
             <div>
